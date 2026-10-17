@@ -1,0 +1,17 @@
+data/final_rows/tc_rows_L300.json: 1356 clip-pairs; |view - axis| median 15.2 deg, 90th pct 37.2 deg
+
+failure rate (>1 frame) by subject-centred view angle
+ view deg clip-pairs           CC          CSF
+   0-30           68    4% (0.41)    2% (0.33)
+  30-60          316   11% (0.50)    9% (0.44)
+  60-75          115    9% (0.63)   10% (0.55)
+  75-90          170   10% (0.51)    7% (0.37)
+  90-105         140   14% (0.73)    8% (0.57)
+ 105-120         179    5% (0.42)    7% (0.46)
+ 120-150         368    7% (0.39)    7% (0.38)
+ 150-181           0       --           --    
+
+how well does each geometric quantity predict success (|err|<=1)? AUC
+  CC           -view 0.459  -axis 0.457  |cos view| 0.548  |cos axis| 0.505  peak 0.732
+  CSF          -view 0.476  -axis 0.511  |cos view| 0.534  |cos axis| 0.479  peak 0.674
+wrote docs/paper/clips/final/tc_view_L300.json

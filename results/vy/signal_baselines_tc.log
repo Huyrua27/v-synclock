@@ -1,0 +1,28 @@
+tc: 8136 samples, 15 units; mean error (frames, per unit) / share > 1 / failures
+         variant            all       acting    freestyle      walking
+    pose2sim|int  3.169 ( 50%)        2.846        1.938        4.767
+    pose2sim|sub  3.154 ( 53%)        2.825        1.913        4.766
+     opencap|int  2.313 ( 42%)        2.197        2.600        2.131
+     opencap|sub  2.291 ( 48%)        2.173        2.584        2.104
+      abs_vy|int  2.597 ( 40%)        2.348        1.449        4.011
+      abs_vy|sub  2.566 ( 42%)        2.314        1.395        4.002
+       speed|int  1.347 ( 28%)        0.830        0.763        2.458
+       speed|sub  1.320 ( 32%)        0.801        0.720        2.450
+          vy|int  0.549 (  8%)        0.379        0.524        0.752
+          vy|sub  0.488 ( 10%)        0.313        0.448        0.712
+    speed+vy|int  0.503 (  6%)        0.337        0.461        0.718
+    speed+vy|sub  0.441 (  8%)        0.261        0.394        0.677
+
+paired, speed+vy|sub minus each variant (per unit):
+  - pose2sim|int     -2.728 [-3.308, -2.118]
+  - pose2sim|sub     -2.712 [-3.305, -2.106]
+  - opencap|int      -1.872 [-2.216, -1.589]
+  - opencap|sub      -1.850 [-2.198, -1.557]
+  - abs_vy|int       -2.156 [-2.674, -1.608]
+  - abs_vy|sub       -2.124 [-2.640, -1.597]
+  - speed|int        -0.906 [-1.250, -0.595]
+  - speed|sub        -0.878 [-1.232, -0.566]
+  - vy|int           -0.107 [-0.150, -0.065]
+  - vy|sub           -0.047 [-0.097, +0.000]
+  - speed+vy|int     -0.062 [-0.073, -0.050]
+wrote docs/paper/clips/vy/signal_baselines_tc.json

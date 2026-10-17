@@ -1,0 +1,26 @@
+  S1_acting3: 44 s
+  S1_freestyle3: 33 s
+  S1_walking2: 52 s
+  S2_acting3: 80 s
+  S2_freestyle3: 52 s
+  S2_walking2: 59 s
+  S3_acting3: 71 s
+  S3_freestyle3: 65 s
+  S3_walking2: 53 s
+  S4_acting3: 59 s
+  S4_freestyle3: 46 s
+  S4_walking2: 55 s
+  S5_acting3: 49 s
+  S5_freestyle3: 58 s
+  S5_walking2: 61 s
+
+mean |offset error| (frames) of placed cameras by elapsed time; placed share and MPJPE (mm) after 10 s
+          mode    0-10s   10-30s   30-60s    60-0s  placed   MPJPE
+     causal_p0      nan     0.39     0.37     0.39     69%     5.9
+    offline_p0     0.31     0.23     0.30     0.27     86%    12.3
+     causal_p2      nan     0.30     0.33     0.35     69%     5.1
+    offline_p2     0.31     0.23     0.31     0.29     86%    12.5
+   uncorrected     0.80     0.97     1.40     2.54    100%    35.7
+refit time (p0, 8 cameras, 28 pairs): mean 2230 ms, p95 3057 ms, max 3928 ms, every 5 s of video
+refit time (p2, 8 cameras, 28 pairs): mean 2238 ms, p95 3077 ms, max 3841 ms, every 5 s of video
+wrote data/take2/tc_online_rig_fix.json

@@ -1,0 +1,75 @@
+15 sequences: S1_acting3(8 cams), S1_freestyle3(8 cams), S1_walking2(8 cams), S2_acting3(8 cams), S2_freestyle3(8 cams), S2_walking2(8 cams), S3_acting3(8 cams), S3_freestyle3(8 cams), S3_walking2(8 cams), S4_acting3(8 cams), S4_freestyle3(8 cams), S4_walking2(8 cams), S5_acting3(8 cams), S5_freestyle3(8 cams), S5_walking2(8 cams)
+  S1_acting3: 732 rows so far
+  S1_freestyle3: 1668 rows so far
+  S1_walking2: 2616 rows so far
+  S2_acting3: 3624 rows so far
+  S2_freestyle3: 4574 rows so far
+  S2_walking2: 5522 rows so far
+  S3_acting3: 6554 rows so far
+  S3_freestyle3: 7730 rows so far
+  S3_walking2: 8604 rows so far
+  S4_acting3: 9636 rows so far
+  S4_freestyle3: 10572 rows so far
+  S4_walking2: 11632 rows so far
+  S5_acting3: 12808 rows so far
+  S5_freestyle3: 14068 rows so far
+  S5_walking2: 15172 rows so far
+skipped: {'low detection': 2494}
+15172 rows -> data/final_rows/tc_rows_L150.json
+7586 pair-offset samples, 15 sequences
+
+method            mean [95% CI over seqs]  <=.25    >1 | angle<=60: mean  >1 | angle>=105: mean  >1
+CC              0.632 [ 0.469,  0.814]        42%   12% |     0.544  11% |      0.580  12%
+CSF             0.607 [ 0.474,  0.756]        39%   13% |     0.494   9% |      0.555  10%
+
+by viewpoint angle (optical axes): mean error / share >1 frame
+      bin pairs               CC              CSF
+     0-30     4    0.61 /   12%    0.53 /   11%
+    30-60     1    0.35 /    4%    0.38 /    3%
+    60-75     3    0.61 /   11%    0.60 /   15%
+    75-90     6    0.73 /   15%    0.73 /   18%
+   90-105     5    0.69 /   14%    0.66 /   14%
+  105-180     9    0.59 /   12%    0.57 /   10%
+
+per pair (sorted by angle): failure rate >1 frame per method; logistic 50% angle
+  4-5     10deg  peak 0.39  CC: 15%  CSF: 14%
+  2-3     16deg  peak 0.22  CC: 27%  CSF: 19%
+  6-7     18deg  peak 0.39  CC: 10%  CSF: 11%
+  1-8     28deg  peak 0.56  CC:  5%  CSF:  5%
+  7-8     50deg  peak 0.56  CC:  4%  CSF:  3%
+  3-4     66deg  peak 0.42  CC: 17%  CSF: 16%
+  6-8     66deg  peak 0.24  CC:  6%  CSF: 15%
+  5-6     69deg  peak 0.51  CC: 11%  CSF: 15%
+  3-5     76deg  peak 0.23  CC: 28%  CSF: 25%
+  1-7     78deg  peak 0.34  CC:  7%  CSF:  9%
+  4-6     78deg  peak 0.31  CC:  9%  CSF: 16%
+  1-2     79deg  peak 0.35  CC: 26%  CSF: 30%
+  2-4     82deg  peak 0.15  CC: 11%  CSF: 26%
+  5-7     86deg  peak 0.24  CC: 14%  CSF: 10%
+  1-3     91deg  peak 0.21  CC: 19%  CSF: 16%
+  2-5     91deg  peak 0.16  CC: 16%  CSF: 12%
+  1-6     93deg  peak 0.24  CC:  7%  CSF: 10%
+  4-7     96deg  peak 0.24  CC: 13%  CSF: 11%
+  2-8    105deg  peak 0.24  CC: 16%  CSF: 26%
+  3-8    114deg  peak 0.29  CC: 17%  CSF: 11%
+  5-8    126deg  peak 0.19  CC: 12%  CSF: 13%
+  3-6    130deg  peak 0.24  CC: 14%  CSF: 13%
+  4-8    131deg  peak 0.34  CC:  6%  CSF:  5%
+  1-4    138deg  peak 0.29  CC:  5%  CSF:  4%
+  3-7    138deg  peak 0.29  CC: 17%  CSF: 13%
+  1-5    139deg  peak 0.28  CC: 11%  CSF: 10%
+  2-6    141deg  peak 0.25  CC:  4%  CSF: 12%
+  2-7    142deg  peak 0.27  CC: 20%  CSF: 13%
+  CC           50% failure at 150.0 deg (scale 30)
+  CSF          50% failure at 150.0 deg (scale 30)
+
+observability transfer: AthletePose3D whole-clip threshold, frozen
+  CC: peak>=0.050  AUC 0.725  kept 88%  precision 89%  failures caught 25%  err kept 0.53 / all 0.62  pair-level AUC (pair works) nan
+  CSF: peak>=0.203  AUC 0.696  kept 80%  precision 90%  failures caught 38%  err kept 0.50 / all 0.60  pair-level AUC (pair works) nan
+
+by activity: mean error (share >1) on pairs <= 60 deg
+  walking   CC:0.77(17%)  CSF:0.65(12%)
+  acting    CC:0.29(4%)  CSF:0.33(7%)
+  freestyle CC:0.58(12%)  CSF:0.51(9%)
+
+wrote docs/paper/clips/final/tc_summary_L150.json

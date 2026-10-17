@@ -1,0 +1,54 @@
+sequence ('S2', 'acting3'), 60s at 30 fps (1800 frames); pass 2 window 20 / stride 6
+
+C=3: 3 pairs, pruned k=2: 3 edges  (s per minute of video)
+  coarse             0.03
+  pass1              0.49
+  null               1.21
+  placement          0.00
+  resample           0.01
+  triangulation      0.22
+  pass2 CC  all      1.68  (8 proc: 0.68)   total sync     3.63
+  pass2 CC  k2       1.61  (8 proc: 0.59)   total sync     3.56
+  pass2 CSF all     11.80  (8 proc: 4.66)   total sync    13.75
+  pass2 CSF k2      10.91  (8 proc: 5.73)   total sync    12.86
+  MediaPipe, 3 cameras (1 thread each): 177
+
+C=4: 6 pairs, pruned k=2: 5 edges  (s per minute of video)
+  coarse             0.03
+  pass1              0.80
+  null               1.80
+  placement          0.00
+  resample           0.00
+  triangulation      0.25
+  pass2 CC  all      3.39  (8 proc: 0.70)   total sync     6.27
+  pass2 CC  k2       2.86  (8 proc: 0.71)   total sync     5.74
+  pass2 CSF all     23.57  (8 proc: 6.74)   total sync    26.45
+  pass2 CSF k2      21.55  (8 proc: 6.37)   total sync    24.43
+  MediaPipe, 4 cameras (1 thread each): 236
+
+C=6: 15 pairs, pruned k=2: 7 edges  (s per minute of video)
+  coarse             0.05
+  pass1              2.40
+  null               9.90
+  placement          0.00
+  resample           0.01
+  triangulation      0.25
+  pass2 CC  all      8.17  (8 proc: 1.35)   total sync    20.78
+  pass2 CC  k2       3.43  (8 proc: 0.86)   total sync    16.04
+  pass2 CSF all     60.57  (8 proc: 18.63)   total sync    73.18
+  pass2 CSF k2      35.63  (8 proc: 8.99)   total sync    48.25
+  MediaPipe, 6 cameras (1 thread each): 354
+
+C=8: 28 pairs, pruned k=2: 9 edges  (s per minute of video)
+  coarse             0.06
+  pass1              4.34
+  null              14.12
+  placement          0.00
+  resample           0.01
+  triangulation      0.29
+  pass2 CC  all     13.61  (8 proc: 3.19)   total sync    32.42
+  pass2 CC  k2       5.01  (8 proc: 1.13)   total sync    23.82
+  pass2 CSF all    110.21  (8 proc: 27.59)   total sync   129.02
+  pass2 CSF k2      34.38  (8 proc: 12.46)   total sync    53.19
+  MediaPipe, 8 cameras (1 thread each): 472
+wrote docs/paper/clips/final/rig_profile.json

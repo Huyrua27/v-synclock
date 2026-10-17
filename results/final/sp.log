@@ -1,0 +1,104 @@
+  S06 jump0000: 378 rows
+  S06 jump0001: 756 rows
+  S06 jump0002: 1134 rows
+  S06 jump0003: 1512 rows
+  S06 jump0004: 1890 rows
+  S06 soccer0010: 2268 rows
+  S06 soccer0011: 2646 rows
+  S06 soccer0012: 3024 rows
+  S06 soccer0013: 3402 rows
+  S06 soccer0014: 3780 rows
+  S06 tennis0020: 4158 rows
+  S06 tennis0021: 4536 rows
+  S06 tennis0022: 4914 rows
+  S06 tennis0023: 5292 rows
+  S06 tennis0024: 5670 rows
+  S06 throw_baseball0005: 6048 rows
+  S06 throw_baseball0006: 6426 rows
+  S06 throw_baseball0007: 6804 rows
+  S06 throw_baseball0008: 7182 rows
+  S06 throw_baseball0009: 7560 rows
+  S06 volley0015: 7938 rows
+  S06 volley0016: 8316 rows
+  S06 volley0017: 8694 rows
+  S06 volley0018: 9072 rows
+  S06 volley0019: 9450 rows
+  S12 jump0000: 9828 rows
+  S12 jump0001: 10206 rows
+  S12 jump0002: 10584 rows
+  S12 jump0003: 10962 rows
+  S12 jump0004: 11340 rows
+  S12 soccer0010: 11718 rows
+  S12 soccer0011: 12096 rows
+  S12 soccer0012: 12474 rows
+  S12 soccer0013: 12852 rows
+  S12 soccer0014: 13230 rows
+  S12 tennis0020: 13608 rows
+  S12 tennis0021: 13986 rows
+  S12 tennis0022: 14364 rows
+  S12 tennis0023: 14742 rows
+  S12 tennis0024: 15120 rows
+  S12 throw_baseball0005: 15498 rows
+  S12 throw_baseball0006: 15876 rows
+  S12 throw_baseball0007: 16254 rows
+  S12 throw_baseball0008: 16632 rows
+  S12 throw_baseball0009: 17010 rows
+  S12 volley0015: 17388 rows
+  S12 volley0016: 17766 rows
+  S12 volley0017: 18144 rows
+  S12 volley0018: 18522 rows
+  S12 volley0019: 18900 rows
+  S12 volley0030: 19278 rows
+  S19 jump0000: 19656 rows
+  S19 jump0001: 20034 rows
+  S19 jump0002: 20412 rows
+  S19 jump0003: 20790 rows
+  S19 jump0004: 21168 rows
+  S19 soccer0010: 21546 rows
+  S19 soccer0011: 21924 rows
+  S19 soccer0012: 22302 rows
+  S19 soccer0013: 22680 rows
+  S19 soccer0014: 23058 rows
+  S19 tennis0020: 23436 rows
+  S19 tennis0021: 23814 rows
+  S19 tennis0022: 24192 rows
+  S19 tennis0023: 24570 rows
+  S19 tennis0024: 24948 rows
+  S19 throw_baseball0005: 25326 rows
+  S19 throw_baseball0006: 25704 rows
+  S19 throw_baseball0007: 26082 rows
+  S19 throw_baseball0008: 26460 rows
+  S19 throw_baseball0009: 26838 rows
+  S19 volley0015: 27216 rows
+  S19 volley0016: 27594 rows
+  S19 volley0017: 27972 rows
+  S19 volley0018: 28350 rows
+  S19 volley0019: 28728 rows
+
+14364 pair-offset samples, 76 trials
+method          mean [95% CI over trials]  <=.25    >1  per subject
+CC              0.605 [ 0.508,  0.711]        41%   17%  S06:0.458 S12:0.695 S19:0.659
+CSF             0.578 [ 0.496,  0.664]        41%   16%  S06:0.442 S12:0.653 S19:0.636
+  paired CSF - CC: -0.027 [-0.071, +0.014]
+
+by activity: mean error (share >1)
+  jump            CC:0.13(0%)  CSF:0.11(0%)
+  soccer          CC:0.55(7%)  CSF:0.62(11%)
+  tennis          CC:1.06(39%)  CSF:0.89(32%)
+  throw_baseball  CC:0.63(20%)  CSF:0.58(16%)
+  volley          CC:0.65(17%)  CSF:0.69(20%)
+
+failure rate (>1 frame) by subject-centred view angle
+     0-30   n=  684 CC:8%(0.45)  CSF:9%(0.46)
+    30-60   n= 3447 CC:14%(0.54)  CSF:10%(0.47)
+    60-75   n= 2361 CC:19%(0.59)  CSF:22%(0.62)
+    75-90   n=  987 CC:28%(0.85)  CSF:27%(0.81)
+    90-105  n= 1101 CC:20%(0.70)  CSF:14%(0.65)
+   105-120  n= 3723 CC:17%(0.65)  CSF:16%(0.63)
+   120-150  n= 1635 CC:16%(0.54)  CSF:17%(0.53)
+   150-181  n=  426 CC:8%(0.51)  CSF:10%(0.38)
+
+AUC for success (|err|<=1): angle / |cos angle| / peak
+  CC           -view 0.513  |cos view| 0.579  peak 0.755
+  CSF          -view 0.530  |cos view| 0.579  peak 0.757
+wrote data/final_rows/sp_rows_test.json

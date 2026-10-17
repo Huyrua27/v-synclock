@@ -1,0 +1,8 @@
+subjects ['S2', 'S3', 'S4']; threshold (dev) peak >= 0.050; 699 non-reference cameras
+  star   cameras placed  699  mean err 0.16  median 0.13  <=0.25  75%  fail>1   0%
+  tree   cameras placed  699  mean err 0.17  median 0.13  <=0.25  76%  fail>1   0%
+  ls_all cameras placed  699  mean err 0.16  median 0.12  <=0.25  78%  fail>1   0%
+  gated  cameras placed  699  mean err 0.17  median 0.13  <=0.25  76%  fail>1   0%
+  gated_ls cameras placed  699  mean err 0.16  median 0.12  <=0.25  78%  fail>1   0%
+  gated: 0% of cameras reported as not synchronizable to camera 1
+wrote docs/paper/clips/vy/ap3d_graph.json

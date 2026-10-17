@@ -1,0 +1,10 @@
+
+Drift recovery -- mean +/- std over clips of |delta_est - delta_true| (frames), lower better
+12 clips, clip_len=200, window=20, stride=8, beta=0.5
+ drift(fr)           CC-const       Caspi-Irani          CC-slide            CC-c2f         CSF-slide           CSF-c2f
+      1.00     0.2737+-0.0475    0.3475+-0.2637    0.4936+-0.9331    0.2191+-0.2327    0.2431+-0.2029    0.3127+-0.4011
+      2.00     0.5730+-0.0955    0.2735+-0.0999    0.8037+-1.1902    0.2479+-0.3084    0.3775+-0.3455    0.4567+-0.9306
+      3.00     0.8601+-0.1556    0.3619+-0.2847    1.1348+-1.7051    0.5633+-0.8268    0.3412+-0.3465    0.2519+-0.2263
+
+(drift = total offset change across the clip; CC-const cannot track it.)
+wrote per-clip errors -> docs/paper/clips/vy/drift_noisy_cons.json

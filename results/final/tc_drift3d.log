@@ -1,0 +1,45 @@
+  S1_acting3: 3 clips
+  S1_freestyle3: 2 clips
+  S1_walking2: 3 clips
+  S2_acting3: 4 clips
+  S2_freestyle3: 3 clips
+  S2_walking2: 3 clips
+  S3_acting3: 4 clips
+  S3_freestyle3: 4 clips
+  S3_walking2: 3 clips
+  S4_acting3: 4 clips
+  S4_freestyle3: 2 clips
+  S4_walking2: 3 clips
+  S5_acting3: 3 clips
+  S5_freestyle3: 4 clips
+  S5_walking2: 3 clips
+
+48 clips of 300 frames; cameras [1, 8, 4, 7] (ref 1); window 20
+
+edrift (frames), mean over clips
+drift        naive     CC-const  Caspi-style       CC-c2f      CSF-c2f CC-c2f+prior CSF-c2f+prior       oracle
+  0.0        0.500        0.299        1.152        0.327        0.351        0.268        0.274        0.000
+  1.0        0.998        0.434        1.167        0.403        0.353        0.409        0.339        0.000
+  2.0        1.497        0.644        1.187        0.442        0.380        0.568        0.518        0.000
+  3.0        1.995        0.880        1.193        0.462        0.400        0.753        0.712        0.000
+
+sync (mm), mean over clips
+drift        naive     CC-const  Caspi-style       CC-c2f      CSF-c2f CC-c2f+prior CSF-c2f+prior       oracle
+  0.0       11.935        7.564       28.061        8.392        9.045        7.343        7.314        3.326
+  1.0       23.015        9.201       28.411        9.003        8.150        9.505        7.915        1.854
+  2.0       33.784       13.493       29.375        9.837        8.840       13.088       11.699        1.834
+  3.0       44.320       18.021       29.909        9.678        9.042       16.982       15.781        2.013
+
+vicon (mm), mean over clips
+drift        naive     CC-const  Caspi-style       CC-c2f      CSF-c2f CC-c2f+prior CSF-c2f+prior       oracle
+  0.0       69.596       67.025       78.402       68.018       67.667       67.690       67.151       66.539
+  1.0       74.425       67.293       78.809       68.226       67.667       68.285       67.449       66.527
+  2.0       80.775       67.896       79.171       68.395       67.899       69.237       68.157       66.508
+  3.0       88.018       69.060       79.367       68.349       67.918       70.185       69.109       66.458
+
+tested correction: share of (clip, camera) decisions line / const / none
+  d=0: CC: line nan% const nan% none nan%  CSF: line nan% const nan% none nan%
+  d=1: CC: line nan% const nan% none nan%  CSF: line nan% const nan% none nan%
+  d=2: CC: line nan% const nan% none nan%  CSF: line nan% const nan% none nan%
+  d=3: CC: line nan% const nan% none nan%  CSF: line nan% const nan% none nan%
+wrote docs/paper/clips/final/tc_drift3d.json

@@ -1,0 +1,6 @@
+split=test  clips=59  samples=1000  occlusion_p=0.0
+
+            Method   Frm.err  Accin@0.1  Accin@0.25   MAE_ms
+ ContinuSyncFormer    0.0802      0.732       0.976     2.68
+      CC+parabolic    0.2594      0.751       0.972     8.65
+               DTW    0.1532      0.571       0.925     5.11

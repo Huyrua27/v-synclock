@@ -1,0 +1,29 @@
+  S1_acting3 done
+  S1_freestyle3 done
+  S1_walking2 done
+  S2_acting3 done
+  S2_freestyle3 done
+  S2_walking2 done
+  S3_acting3 done
+  S3_freestyle3 done
+  S3_walking2 done
+  S4_acting3 done
+  S4_freestyle3 done
+  S4_walking2 done
+  S5_acting3 done
+  S5_freestyle3 done
+  S5_walking2 done
+
+clip 300 frames @30fps; AP3D CC threshold 0.050; null q0.95
+  star        placed   365         mean 0.37  median 0.21  <=0.25 54%  >1 6%
+  tree        placed   365         mean 0.59  median 0.33  <=0.25 41%  >1 18%
+  ls_all      placed   365         mean 0.34  median 0.21  <=0.25 56%  >1 5%
+  gated_ap3d  placed   365 (100%)  mean 0.59  median 0.33  <=0.25 41%  >1 18%
+  gated_null  placed   294 (81%)  mean 0.43  median 0.28  <=0.25 46%  >1 10%
+  gated_null_ls placed   294 (81%)  mean 0.32  median 0.22  <=0.25 56%  >1 4%
+  gated_null placed cameras by path length (edges): {1: 84, 2: 81, 3: 55, 4: 45, 5: 23, 6: 6}
+  gated (null) placed cameras, mean error by tree depth (3 = 3+): tree vs least squares
+    depth 1: n=  84  tree 0.24 (>1 2%)  LS 0.24 (>1 1%)
+    depth 2: n=  81  tree 0.44 (>1 9%)  LS 0.37 (>1 4%)
+    depth 3: n= 129  tree 0.54 (>1 16%)  LS 0.35 (>1 7%)
+wrote docs/paper/clips/final/tc_graph_L300.json

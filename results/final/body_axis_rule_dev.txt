@@ -1,0 +1,8 @@
+TotalCapture dev (9 seq)     CC   units   9  image 0.526  body 0.507  body-image -0.019 [-0.084, +0.052]  rule(<=+0.05): pass
+TotalCapture dev (9 seq)     CSF  units   9  image 0.465  body 0.462  body-image -0.003 [-0.026, +0.024]  rule(<=+0.05): pass
+AthletePose3D dev S3+S4      CC   units 159  image 0.186  body 0.189  body-image +0.003 [+0.001, +0.005]  rule(<=+0.05): pass
+AthletePose3D test S2        CC   units  74  image 0.174  body 0.174  body-image +0.000 [-0.001, +0.001]  rule(<=+0.05): pass
+AthletePose3D dev S3+S4      CSF  units 159  image 0.417  body 0.443  body-image +0.026 [+0.014, +0.040]  rule(<=+0.05): pass
+AthletePose3D test S2        CSF  units  74  image 0.189  body 0.190  body-image +0.000 [-0.001, +0.002]  rule(<=+0.05): pass
+TotalCapture test (15 seq)   CC   units  15  image 0.441  body 0.483  body-image +0.042 [-0.011, +0.116]  rule(<=+0.05): pass
+TotalCapture test (15 seq)   CSF  units  15  image 0.385  body 0.432  body-image +0.047 [-0.000, +0.104]  rule(<=+0.05): pass

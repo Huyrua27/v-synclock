@@ -1,0 +1,11 @@
+233 usable trials from 3 athletes; fps in files: {120: 932}; dropped: {'camera below detection threshold': 0}
+16776 pair-offset samples; trials with unequal camera lengths: 0
+
+method       trial-mean    95% CI (trials)  median  <=0.1 <=0.25 fail(>1)   per athlete
+CC                0.182 [ 0.170,  0.195]   0.139    38%    75%       0%   S2:0.174 S3:0.206 S4:0.167
+CSF               0.344 [ 0.315,  0.374]   0.150    35%    74%       2%   S2:0.189 S3:0.417 S4:0.416
+
+mean error by fractional part k/4 (all trials):
+  CC           0/4:0.169  1/4:0.176  2/4:0.187  3/4:0.198
+  CSF          0/4:0.228  1/4:0.273  2/4:0.393  3/4:0.484
+wrote data/vy_rows/ap3d_rows.json

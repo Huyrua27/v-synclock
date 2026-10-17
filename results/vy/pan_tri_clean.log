@@ -1,0 +1,18 @@
+
+Drift triangulation MPJPE (mm), mean +/- std over clips -- 11 clips, clip_len=160, window=20, cams=[2, 15, 26]
+ drift(fr)            naive        CC-const        CC-slide          CC-c2f          oracle       CSF-slide         CSF-c2f
+      0.00      3.65+-1.76      1.22+-1.23      1.23+-0.82      1.07+-0.63      0.37+-0.08      0.95+-0.63      0.86+-0.42 
+      0.50      5.32+-2.59      1.37+-1.16      0.91+-0.80      0.83+-0.67      0.21+-0.06      0.81+-0.58      0.76+-0.43 
+      1.00      6.93+-3.42      1.85+-1.23      1.18+-1.01      1.03+-0.78      0.20+-0.05      0.89+-0.63      0.84+-0.51 
+      2.00     10.10+-5.11      3.41+-1.92      1.29+-1.17      0.97+-0.88      0.25+-0.08      0.84+-0.60      0.86+-0.59 
+      3.00     13.20+-6.80      4.88+-2.54      1.31+-1.55      0.90+-0.90      0.36+-0.14      0.93+-0.77      0.89+-0.67 
+wrote per-clip MPJPE -> docs/paper/clips/vy/tri_clean_cons.json
+
+MPJPE over time at drift=3.0 (mm): first-third -> last-third
+       naive: 8.12 -> 15.29
+    CC-const: 6.96 -> 5.23
+    CC-slide: 1.44 -> 1.21
+      CC-c2f: 1.19 -> 0.69
+      oracle: 0.32 -> 0.39
+   CSF-slide: 1.07 -> 0.88
+     CSF-c2f: 1.07 -> 0.85

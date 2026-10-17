@@ -1,0 +1,26 @@
+ iphone_cam1: 8380 frames
+ iphone_cam2: 8535 frames
+ iphone_cam3: 8264 frames
+     webcam0: 8376 frames  (resampled on host timestamps)
+     webcam1: 8376 frames  (resampled on host timestamps)
+coarse offsets vs ref (frames): {'iphone_cam2': -10, 'iphone_cam3': -74, 'webcam0': 81, 'webcam1': 80}
+evaluation segment: ref frames 3900-8292 (146.4s)
+
+      method |  reproj    fast |     LOO    fast |  LOOmed    fast | per-camera drift (frames/min)
+ Coarse only |    8.26   10.02 |   12.98   15.97 |   10.12   11.03 | cam2:+0.00 cam3:+0.00 webcam0:+0.00 webcam1:+0.00
+    CC-const |    8.10    9.52 |   12.76   15.23 |   10.03   10.66 | cam2:+0.00 cam3:+0.00 webcam0:+0.00 webcam1:+0.00
+ Caspi-style |    8.13    9.62 |   12.85   15.60 |   10.03   10.69 | cam2:+1.08 cam3:-0.18 webcam0:-0.36 webcam1:-0.18
+    CC-slide |    8.10    9.51 |   12.75   15.17 |   10.04   10.70 | cam2:+0.46 cam3:-0.06 webcam0:+0.04 webcam1:+0.39
+      CC-c2f |    8.10    9.54 |   12.77   15.28 |   10.03   10.68 | cam2:+0.59 cam3:+0.11 webcam0:+0.00 webcam1:+0.21
+   CSF-slide |    8.10    9.51 |   12.76   15.27 |   10.03   10.67 | cam2:+0.64 cam3:-0.19 webcam0:-0.16 webcam1:+0.22
+     CSF-c2f |    8.08    9.48 |   12.73   15.18 |   10.02   10.65 | cam2:+0.90 cam3:+0.07 webcam0:-0.08 webcam1:+0.18
+
+median LOO per held-out camera (px): ['iphone_cam1', 'iphone_cam2', 'iphone_cam3', 'webcam0', 'webcam1']
+ Coarse only:   12.89   11.67   13.51    7.84    6.62
+    CC-const:   12.84   11.60   13.50    7.62    6.62
+ Caspi-style:   12.83   11.56   13.51    7.62    6.62
+    CC-slide:   12.84   11.57   13.50    7.64    6.61
+      CC-c2f:   12.84   11.57   13.50    7.64    6.60
+   CSF-slide:   12.83   11.55   13.51    7.61    6.61
+     CSF-c2f:   12.82   11.54   13.52    7.61    6.61
+wrote docs/paper/clips/final/take1_eval_cons.json

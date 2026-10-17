@@ -1,0 +1,9 @@
+.git
+**/__pycache__
+data/panoptic_raw
+data/tc
+data/ap3d
+data/sportpose
+data/aistpp
+captures/**/*.mp4
+captures/**/*.mov

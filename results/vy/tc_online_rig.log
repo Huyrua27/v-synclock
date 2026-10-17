@@ -1,0 +1,28 @@
+  S1_acting3: 44 s
+  S1_freestyle3: 33 s
+  S1_walking2: 52 s
+  S2_acting3: 80 s
+  S2_freestyle3: 52 s
+  S2_walking2: 59 s
+  S3_acting3: 71 s
+  S3_freestyle3: 65 s
+  S3_walking2: 53 s
+  S4_acting3: 59 s
+  S4_freestyle3: 46 s
+  S4_walking2: 55 s
+  S5_acting3: 49 s
+  S5_freestyle3: 58 s
+  S5_walking2: 61 s
+
+mean |offset error| (frames) of placed cameras by elapsed time; placed share and MPJPE (mm) after 10 s
+          mode    0-10s   10-30s   30-60s    60-0s  placed   MPJPE
+<repo>/scripts\tc_online_rig.py:136: RuntimeWarning: Mean of empty slice
+  print(f"{m:>14s} " + " ".join(f"{np.nanmean(v) if len(v) else np.nan:8.2f}" for v in d["bins"])
+     causal_p0      nan     0.62     0.45     0.30     70%     8.3
+    offline_p0     0.25     0.20     0.25     0.31     81%    11.5
+     causal_p2      nan     0.30     0.29     0.29     71%     5.4
+    offline_p2     0.25     0.20     0.26     0.33     81%    11.6
+   uncorrected     0.80     0.97     1.40     2.54    100%    35.7
+refit time (p0, 8 cameras, 28 pairs): mean 1391 ms, p95 1839 ms, max 1940 ms, every 5 s of video
+refit time (p2, 8 cameras, 28 pairs): mean 1397 ms, p95 1824 ms, max 1961 ms, every 5 s of video
+wrote docs/paper/clips/vy/tc_online_rig.json

@@ -1,0 +1,7 @@
+# pinned versions (Python 3.12); the paper was produced with the same versions except numpy 2.4
+numpy==1.26.4                   # mediapipe 0.10.21 requires numpy<2
+scipy==1.15.3
+matplotlib==3.9.2
+torch==2.5.1                    # CPU build is enough (Docker installs the CPU wheel)
+opencv-contrib-python==4.11.0.86   # includes cv2.aruco for ChArUco calibration
+mediapipe==0.10.21              # 2D pose extraction

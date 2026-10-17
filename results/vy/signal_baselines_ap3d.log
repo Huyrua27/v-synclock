@@ -1,0 +1,28 @@
+ap3d: 16776 samples, 233 units; mean error (frames, per unit) / share > 1 / failures
+         variant            all       narrow         wide
+    pose2sim|int  2.947 ( 50%)        2.639        3.102
+    pose2sim|sub  2.894 ( 50%)        2.561        3.061
+     opencap|int  1.519 ( 49%)        1.208        1.674
+     opencap|sub  1.501 ( 55%)        1.152        1.676
+      abs_vy|int  3.410 ( 59%)        0.250        4.989
+      abs_vy|sub  3.344 ( 59%)        0.070        4.980
+       speed|int  3.269 ( 55%)        0.436        4.685
+       speed|sub  3.241 ( 56%)        0.347        4.687
+          vy|int  0.274 (  0%)        0.251        0.286
+          vy|sub  0.133 (  0%)        0.077        0.161
+    speed+vy|int  0.300 (  0%)        0.260        0.320
+    speed+vy|sub  0.182 (  0%)        0.105        0.221
+
+paired, speed+vy|sub minus each variant (per unit):
+  - pose2sim|int     -2.765 [-2.819, -2.711]
+  - pose2sim|sub     -2.712 [-2.767, -2.658]
+  - opencap|int      -1.336 [-1.413, -1.263]
+  - opencap|sub      -1.319 [-1.394, -1.246]
+  - abs_vy|int       -3.227 [-3.292, -3.163]
+  - abs_vy|sub       -3.161 [-3.227, -3.097]
+  - speed|int        -3.086 [-3.173, -3.000]
+  - speed|sub        -3.058 [-3.146, -2.969]
+  - vy|int           -0.092 [-0.102, -0.082]
+  - vy|sub           +0.050 [+0.042, +0.058]
+  - speed+vy|int     -0.117 [-0.122, -0.113]
+wrote docs/paper/clips/vy/signal_baselines_ap3d.json

@@ -1,0 +1,46 @@
+  null S1_acting3
+  null S1_freestyle3
+  null S1_walking2
+  null S2_acting3
+  null S2_freestyle3
+  null S2_walking2
+  null S3_acting3
+  null S3_freestyle3
+  null S3_walking2
+  null S4_acting3
+  null S4_freestyle3
+  null S4_walking2
+  null S5_acting3
+  null S5_freestyle3
+  null S5_walking2
+
+CC (window 300): no gate  precision 92%  mean err 0.45
+  null q0.9: kept 67%  precision 95%  failures caught 61%  mean err kept 0.34
+      acting    success 98%  kept 88%  precision 98%  successes kept 88%  median thr 0.151
+      freestyle success 93%  kept 94%  precision 94%  successes kept 95%  median thr 0.134
+      walking   success 85%  kept 21%  precision 89%  successes kept 22%  median thr 0.245
+  null q0.95: kept 63%  precision 96%  failures caught 68%  mean err kept 0.32
+      acting    success 98%  kept 82%  precision 99%  successes kept 83%  median thr 0.183
+      freestyle success 93%  kept 92%  precision 94%  successes kept 94%  median thr 0.165
+      walking   success 85%  kept 16%  precision 90%  successes kept 18%  median thr 0.308
+  null q0.99: kept 55%  precision 97%  failures caught 77%  mean err kept 0.30
+      acting    success 98%  kept 71%  precision 99%  successes kept 72%  median thr 0.245
+      freestyle success 93%  kept 85%  precision 95%  successes kept 86%  median thr 0.214
+      walking   success 85%  kept 12%  precision 95%  successes kept 13%  median thr 0.388
+  AUC raw peak 0.727; peak minus pair null median 0.720
+
+CSF (window 300): no gate  precision 93%  mean err 0.39
+  null q0.9: kept 67%  precision 96%  failures caught 57%  mean err kept 0.33
+      acting    success 99%  kept 86%  precision 99%  successes kept 87%  median thr 0.249
+      freestyle success 97%  kept 92%  precision 97%  successes kept 92%  median thr 0.249
+      walking   success 85%  kept 25%  precision 81%  successes kept 23%  median thr 0.321
+  null q0.95: kept 62%  precision 97%  failures caught 68%  mean err kept 0.31
+      acting    success 99%  kept 82%  precision 99%  successes kept 82%  median thr 0.281
+      freestyle success 97%  kept 88%  precision 97%  successes kept 88%  median thr 0.279
+      walking   success 85%  kept 19%  precision 84%  successes kept 19%  median thr 0.369
+  null q0.99: kept 53%  precision 98%  failures caught 81%  mean err kept 0.29
+      acting    success 99%  kept 68%  precision 99%  successes kept 69%  median thr 0.333
+      freestyle success 97%  kept 81%  precision 98%  successes kept 81%  median thr 0.325
+      walking   success 85%  kept 12%  precision 90%  successes kept 13%  median thr 0.444
+  AUC raw peak 0.683; peak minus pair null median 0.691
+wrote docs/paper/clips/vy/tc_null_L300.json

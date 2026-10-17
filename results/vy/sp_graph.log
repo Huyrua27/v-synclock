@@ -1,0 +1,14 @@
+  graph S06 done
+  graph S12 done
+  graph S19 done
+
+camera graph, 456 non-reference cameras; gated places 62%
+  star      placed  456  mean 0.76  median 0.39  >1 26%
+  tree      placed  456  mean 0.79  median 0.44  >1 26%
+  ls_all    placed  456  mean 0.59  median 0.35  >1 20%
+  gated     placed  282  mean 0.54  median 0.32  >1 19%
+  gated_ls  placed  282  mean 0.50  median 0.29  >1 16%
+    depth 1: n=  71 tree 0.47 (>1 14%)  LS 0.47 (>1 13%)
+    depth 2: n= 106 tree 0.50 (>1 19%)  LS 0.47 (>1 18%)
+    depth 3: n= 105 tree 0.63 (>1 23%)  LS 0.56 (>1 17%)
+wrote docs/paper/clips/vy/sp_graph_test.json
