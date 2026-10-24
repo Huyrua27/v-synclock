@@ -30,7 +30,7 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(errors="replace")
 
 from vsynclock.benchmark.baselines import CaspiIrani, CrossCorrelation
-from vsynclock.benchmark.drift import fit_drift_c2f, shrink_slope, theilsen_line
+from vsynclock.benchmark.drift import fit_drift_c2f, shrink_slope, theilsen_line, ztest_slope
 from vsynclock.benchmark.interpolation import cubic_sample
 from vsynclock.benchmark.surrey_calib import read_surrey
 from vsynclock.core.types import KeypointSequence
@@ -74,7 +74,7 @@ def tested_correction(line, centers, offsets, n, window, stride, rng, n_boot=500
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--kp-dir", default="data/tc/tc_keypoints")
+    ap.add_argument("--kp-dir", default="data/tc/MIST_TC_keypoints")
     ap.add_argument("--vicon-dir", default="data/tc/vicon")
     ap.add_argument("--checkpoint", default="checkpoints/csf_b1_t20.pt")
     ap.add_argument("--cameras", type=int, nargs="+", default=[1, 8, 4, 7], help="first = reference")
@@ -90,6 +90,7 @@ def main():
     ap.add_argument("--prior", type=float, default=None,
                     help="also report c2f with the drift slope shrunk by a N(0, prior^2) prior, frames/min")
     ap.add_argument("--no-test", action="store_true", help="skip the bootstrap-tested correction")
+    ap.add_argument("--ztest", type=float, default=None, help="also report c2f with the slope kept only if |s|/se >= this")
     ap.add_argument("--out", default=None)
     a = ap.parse_args()
     os.chdir(ROOT)
@@ -105,6 +106,7 @@ def main():
     methods = ["naive", "CC-const", "Caspi-style", "CC-c2f", "CSF-c2f"]
     methods += [] if a.no_test else ["CC-c2f+test", "CSF-c2f+test"]
     methods += [] if a.prior is None else ["CC-c2f+prior", "CSF-c2f+prior"]
+    methods += [] if a.ztest is None else ["CC-c2f+z", "CSF-c2f+z"]
     methods += ["oracle"]
     trng = np.random.default_rng(7)
     decisions = {d: {"CC": [], "CSF": []} for d in a.drifts}
@@ -177,6 +179,9 @@ def main():
                         if a.prior is not None:
                             sp, ip = shrink_slope(cen, off, a.prior / (60 * FPS), a.window, a.stride)
                             est[f"{nm}-c2f+prior"][c] = sp * t + ip
+                        if a.ztest is not None:
+                            sz, iz = ztest_slope(cen, off, a.window, a.stride, a.ztest)
+                            est[f"{nm}-c2f+z"][c] = sz * t + iz
                 for m in methods:
                     views, valids = [ref_s], [ref_v]
                     for c in others:

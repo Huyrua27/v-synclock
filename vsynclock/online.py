@@ -30,7 +30,7 @@ import time
 
 import numpy as np
 
-from .benchmark.baselines.cross_correlation import lag_scores, motion_features
+from .benchmark.baselines.cross_correlation import body_down, lag_scores, motion_features
 from .benchmark.drift import peak_in_range, shrink_slope, theilsen_line
 from .core.types import KeypointSequence
 
@@ -64,7 +64,8 @@ class StreamingSynchronizer:
     def __init__(self, cameras, ref, fps=30.0, profile=None, window=20, stride=6, long_window=80,
                  long_stride=20, radius=3.0, refit_every=5.0, first_fit=10.0, prior=None,
                  null_q=0.95, null_n=200, null_per_update=20, min_gap=3.0, huber=0.5, max_slope=6.0, recenter=False, recenter_tol=3.0, inactive_after=None, vote=False,
-                 vote_offset=12.0, vote_offset_step=0.25, vote_slope_step=0.25, lock_after=2, seed=0):
+                 vote_offset=12.0, vote_offset_step=0.25, vote_slope_step=0.25, lock_after=2,
+                 anchor_lags=None, anchor_features="speed+vyb", null_min=20, excite_min=None, seed=0):
         self.cams, self.ref = list(cameras), ref
         self.fps, self.prof = fps, profile or cc_profile()
         self.w, self.s, self.lw, self.ls = window, stride, long_window, long_stride
@@ -77,6 +78,9 @@ class StreamingSynchronizer:
         self.inactive_after = inactive_after      # seconds without new detections -> camera inactive
         self.last_seen = {c: -1 for c in self.cams}
         self.vote, self.lock_after = vote, lock_after
+        # dual anchor: pass-1 windows never re-centred, searched over +-anchor_lags around the coarse alignment
+        self.prof_long = cc_profile(anchor_features, int(anchor_lags)) if anchor_lags else None
+        self.null_min, self.excite_min = null_min, excite_min
         if vote:                                  # Hough grid: offset (frames) x slope (frames per frame)
             self.gb = np.arange(-vote_offset, vote_offset + 1e-9, vote_offset_step)
             ms = max_slope if max_slope is not None else 6.0
@@ -115,14 +119,23 @@ class StreamingSynchronizer:
                     x[:, j, k] = np.interp(t, t[ok], v[ok]) if ok.sum() >= 2 else 0.0
         return KeypointSequence(x, self.fps)
 
-    def _window(self, u, v, t0, w, line):
+    def _excited(self, seq):
+        """Median over joints of the std of body-axis velocity (px/frame) >= excite_min."""
+        xy = np.asarray(seq.xy, dtype=np.float64)
+        vel = np.gradient(xy, axis=0)
+        e = float(np.median(np.std(vel @ body_down(xy), axis=0)))
+        return e >= self.excite_min
+
+    def _window(self, u, v, t0, w, line, prof=None):
         """Profile of u[t0:t0+w] against v, re-centred on the pair's current line."""
         k0 = int(round(line[0] * (t0 + w / 2) + line[1]))
         a, b = self._stream(u, t0 + k0, t0 + k0 + w), self._stream(v, t0, t0 + w)
         if a is None or b is None:
             return None
+        if self.excite_min is not None and not (self._excited(a) and self._excited(b)):
+            return None
         try:
-            lags, sc = self.prof(a, b)
+            lags, sc = (prof or self.prof)(a, b)
         except ValueError:                                             # no motion
             return None
         return t0 + w / 2, np.asarray(lags, dtype=np.float64) + k0, np.asarray(sc, dtype=np.float64)
@@ -135,10 +148,11 @@ class StreamingSynchronizer:
         u, v = p
         n = min(len(self.buf[u]), len(self.buf[v])) - 8               # margin for the re-centring
         cline = P.line if (not self.vote or P.locked) else (0.0, 0.0)
+        lline = (0.0, 0.0) if self.prof_long is not None else cline
         while P.next_long + self.lw <= n:
-            r = self._window(u, v, P.next_long, self.lw, cline)
+            r = self._window(u, v, P.next_long, self.lw, lline, self.prof_long)
             if r:
-                P.long.append(r); P.long_meta.append((P.next_long, self.lw, self._centre(cline, P.next_long, self.lw)))
+                P.long.append(r); P.long_meta.append((P.next_long, self.lw, self._centre(lline, P.next_long, self.lw)))
                 if self.vote:
                     self._cast(P, r)
             P.next_long += self.ls
@@ -148,7 +162,7 @@ class StreamingSynchronizer:
                 P.short.append(r); P.short_meta.append((P.next_short, self.w, self._centre(cline, P.next_short, self.w)))
             P.next_short += self.s
         gap, tries = int(self.gap * self.fps), 0
-        while len(P.null) < self.null_n and tries < 3 * self.null_k and n > self.lw + gap:
+        while len(P.null) < self.null_n and tries < 3 * max(self.null_k, self.null_min) and n > self.lw + gap:
             tries += 1
             t1, t2 = self.rng.integers(0, n - self.lw, 2)
             if abs(int(t1) - int(t2)) < gap:
@@ -160,7 +174,7 @@ class StreamingSynchronizer:
                 P.null.append(float(np.max(self.prof(a, b)[1])))
             except ValueError:
                 pass
-            if tries >= self.null_k and len(P.null) >= 20:
+            if tries >= self.null_k and len(P.null) >= self.null_min:
                 break
 
     def _cast(self, P, r):
@@ -305,7 +319,7 @@ class StreamingSynchronizer:
                 continue
             recent = P.long[-12:]
             P.peak = float(np.mean([np.max(s) for _, _, s in recent])) if recent else 0.0
-            thr = np.quantile(P.null, self.null_q) if len(P.null) >= 20 else np.inf
+            thr = np.quantile(P.null, self.null_q) if len(P.null) >= self.null_min else np.inf
             if P.peak >= thr:                 # accept a line only from pairs with timing evidence;
                 if self.vote:                 # acquisition -> tracking after `lock_after` stable updates
                     tn = float(len(self.buf[self.ref]))

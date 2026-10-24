@@ -71,6 +71,22 @@ def shrink_slope(centers, values, sigma_prior: float, window: int, stride: int) 
     return float(s2), float(np.median(v - s2 * c))
 
 
+def ztest_slope(centers, values, window: int, stride: int, z: float = 1.96) -> tuple[float, float]:
+    """Theil-Sen line whose slope is kept only if |slope| / se >= z (se as in shrink_slope);
+    otherwise slope 0 and the median offset (constant timing)."""
+    c = np.asarray(centers, dtype=np.float64); v = np.asarray(values, dtype=np.float64)
+    ok = np.isfinite(c) & np.isfinite(v); c, v = c[ok], v[ok]
+    s, b = theilsen_line(c, v)
+    if len(c) < 3:
+        return 0.0, float(np.median(v)) if len(v) else 0.0
+    r = v - (s * c + b)
+    se = 1.4826 * np.median(np.abs(r - np.median(r))) / np.sqrt(np.sum((c - c.mean()) ** 2) + 1e-12)
+    se *= np.sqrt(window / stride)
+    if abs(s) >= z * se:
+        return float(s), float(b)
+    return 0.0, float(np.median(v))
+
+
 def sliding_offsets(predict, a_stream: np.ndarray, b_stream: np.ndarray,
                     fps: float, window: int, stride: int):
     """Local offset per window via ``predict(a_seq, b_seq) -> dt_frames``.

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Streaming V-SyncLock (vsynclock.online.StreamingSynchronizer) on the eight-camera TotalCapture rig.
+"""Streaming MIST (vsynclock.online.StreamingSynchronizer) on the eight-camera TotalCapture rig.
 
 Each test sequence (first --max-seconds, 30 fps after decimation) is replayed in one-second
 chunks. Every non-reference camera gets its own clock: delta_c(t) = beta_c + r_c t with beta_c
@@ -40,13 +40,13 @@ BINS = [(0, 10), (10, 30), (30, 60), (60, 1e9)]
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--kp-dir", default="data/tc/tc_keypoints")
+    ap.add_argument("--kp-dir", default="data/tc/MIST_TC_keypoints")
     ap.add_argument("--max-seconds", type=float, default=120)
     ap.add_argument("--features", default="speed+vyb")
     ap.add_argument("--priors", type=float, nargs="+", default=[0, 2], help="0 = no slope prior")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--limit", type=int, default=0, help="only the first n sequences (smoke test)")
-    ap.add_argument("--variant", choices=("B0", "fix", "vote"), default="fix",
+    ap.add_argument("--variant", choices=("B0", "fix", "vote", "anchor"), default="fix",
                     help="B0: cache as first computed, all pairs always; fix: stale-window re-centring + inactive cameras")
     ap.add_argument("--drift-max", type=float, default=3.0, help="per-camera drift uniform in +-this (frames/min)")
     ap.add_argument("--lead-in", type=float, default=0.0,
@@ -59,6 +59,8 @@ def main():
     a = ap.parse_args()
     VARIANT = dict(recenter=a.variant == "fix", inactive_after=5.0 if a.variant == "fix" else None,
                    vote=a.variant == "vote")
+    if a.variant == "anchor":
+        VARIANT.update(anchor_lags=30, null_min=50, excite_min=0.5)
     os.chdir(ROOT)
     calib = read_surrey(os.path.join(a.kp_dir, "calibration.cal"))
     seqs = load_sequences(a.kp_dir)

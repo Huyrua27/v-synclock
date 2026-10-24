@@ -23,7 +23,7 @@ def motion_features(seq: KeypointSequence, features: str = "speed") -> np.ndarra
 
     features="speed+vy" appends the signed vertical image velocity of every joint, which
     separates the up- and down-strokes of a limb (assumes roughly upright cameras);
-    "speed+vyb" takes "vertical" along the body axis instead (roll-invariant, the V-SyncLock default)."""
+    "speed+vyb" takes "vertical" along the body axis instead (roll-invariant, the MIST default)."""
     xy = np.asarray(seq.xy, dtype=np.float64).copy()
     time = np.arange(seq.T)
     for joint in range(seq.J):
